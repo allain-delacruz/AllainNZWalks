@@ -4,6 +4,14 @@ namespace AllainNZWalks.Repositories
 {
     public interface IRegionRepository
     {
-       Task<IEnumerable<Region>> GetAllAsync(); //Use Task<> to use async
+       Task<IEnumerable<Region>> GetAllRegionAsync(); //Use Task<> to use async
+
+       Task<Region> GetRegionAsync(Guid id);
+
+       Task<Region> AddRegionAsync(Region region);
+
+       Task<Region> DeleteRegionAsync(Guid id);
+
+       Task<Region> UpdateRegionAsync(Guid id, Region region);
     }
 }
