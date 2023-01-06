@@ -38,7 +38,10 @@ namespace AllainNZWalks.Repositories
 
         public async Task<IEnumerable<Region>> GetAllRegionAsync() // 'async' goes with 'await'
         {
-            return await nZWalksDBContext.Regions.ToListAsync();
+            return await 
+                nZWalksDBContext.Regions
+                .Include(x => x.Walks)
+                .ToListAsync();
         }
 
         public async Task<Region> GetRegionAsync(Guid id)

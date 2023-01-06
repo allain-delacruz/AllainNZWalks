@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace AllainNZWalks.Controllers
 {
     [ApiController]
-    [Route("NZRegions")] //any name or use ["controller"]
+    [Route("NZRegionsContoller")] //any name or use ["controller"]
     public class RegionsController : Controller
     {
         private readonly IRegionRepository regionRepository;

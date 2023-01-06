@@ -10,7 +10,6 @@
         public double Long { get; set; }
         public long Population { get; set; }
 
-
         //Navigation Properties
         public IEnumerable<Walk> Walks { get; set; }
     }

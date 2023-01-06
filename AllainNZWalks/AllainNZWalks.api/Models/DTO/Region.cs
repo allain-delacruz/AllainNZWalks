@@ -1,6 +1,4 @@
-﻿using AllainNZWalks.Models.Domain;
-
-namespace AllainNZWalks.Models.DTO
+﻿namespace AllainNZWalks.Models.DTO
 {
     public class Region
     {
@@ -11,5 +9,8 @@ namespace AllainNZWalks.Models.DTO
         public double Lat { get; set; }
         public double Long { get; set; }
         public long Population { get; set; }
+
+        //Navigation Properties
+        //public IEnumerable<Walk> Walks { get; set; }
     }
 }
