@@ -33,7 +33,7 @@ namespace AllainNZWalks.Controllers
 
         [HttpGet]
         [Route("{id:guid}")]
-        [ActionName("GetWalkAsync")]
+        [ActionName("GetWalkDifficultyAsync")]
         public async Task<IActionResult> GetWalkDifficultyAsync(Guid id)
         {
             var walkD = await walkDifficultyRepository.GetWalkDifficultyAsync(id);
@@ -49,7 +49,7 @@ namespace AllainNZWalks.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddWalkDAddWalkDifficultyAsyncAsync([FromBody] Models.DTO.AddUpdateDeleteWalkDifficultyRequest addUpdateDeleteWalkDifficultyRequest)
+        public async Task<IActionResult> AddWalkDifficultyAsync([FromBody] Models.DTO.AddUpdateDeleteWalkDifficultyRequest addUpdateDeleteWalkDifficultyRequest)
         {
             var walkD = new Models.Domain.WalkDifficulty()
             {
