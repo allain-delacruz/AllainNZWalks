@@ -69,7 +69,7 @@ namespace AllainNZWalks.Controllers
 
         [HttpPut]
         [Route("{id:guid}")]
-        public async Task<IActionResult> UpdateWalkDifficultyAsyncv([FromRoute] Guid id, [FromBody] Models.DTO.AddUpdateDeleteWalkDifficultyRequest addUpdateDeleteWalkDifficultyRequest)
+        public async Task<IActionResult> UpdateWalkDifficultyAsync([FromRoute] Guid id, [FromBody] Models.DTO.AddUpdateDeleteWalkDifficultyRequest addUpdateDeleteWalkDifficultyRequest)
         {
             var walkD = new Models.Domain.WalkDifficulty()
             {
@@ -83,11 +83,7 @@ namespace AllainNZWalks.Controllers
                 return NotFound();
             }
 
-            var walkDDTO = new Models.DTO.WalkDifficulty()
-            {
-                Id = walkD.Id,
-                Code = walkD.Code
-            };
+            var walkDDTO = mapper.Map<Models.DTO.WalkDifficulty>(walkD);
 
             return Ok(walkDDTO);
         }
