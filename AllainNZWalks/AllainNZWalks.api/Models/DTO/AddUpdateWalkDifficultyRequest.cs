@@ -1,6 +1,6 @@
 ﻿namespace AllainNZWalks.Models.DTO
 {
-    public class AddUpdateDeleteWalkDifficultyRequest
+    public class AddUpdateWalkDifficultyRequest
     {
         public string Code { get; set; }
     }
