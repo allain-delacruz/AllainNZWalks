@@ -51,10 +51,7 @@ builder.Services.AddDbContext<NZWalksDBContext>(options =>
 builder.Services.AddScoped<IRegionRepository, RegionRepository>();
 builder.Services.AddScoped<IWalkRepository, WalkRepository>();
 builder.Services.AddScoped<IWalkDifficultyRepository, WalkDifficultyRepository>();
-
-//Static User
-builder.Services.AddSingleton<IUserRepo, StaticUserRepo>();
-//User
+builder.Services.AddScoped<IUserRepo, UserRepo>();
 builder.Services.AddScoped<ITokenHandler, AllainNZWalks.Repositories.TokenHandler>();
 
 builder.Services.AddAutoMapper(typeof(Program).Assembly);

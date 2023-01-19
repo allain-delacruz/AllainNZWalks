@@ -22,8 +22,8 @@ namespace AllainNZWalks.Repositories
             claims.Add(new Claim(ClaimTypes.Surname, user.LastName));
             claims.Add(new Claim(ClaimTypes.Email, user.EmailAddress));
 
-            //Loop into roles of users
-            user.Roles.ForEach((role =>
+            //loop into roles of users
+            user.Roles.ForEach ((role =>
             {
                 claims.Add(new Claim(ClaimTypes.Role, role));
             }));
