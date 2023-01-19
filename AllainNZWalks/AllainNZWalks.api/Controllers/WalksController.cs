@@ -2,7 +2,9 @@
 using AllainNZWalks.Models.DTO;
 using AllainNZWalks.Repositories;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace AllainNZWalks.Controllers
 {
@@ -24,6 +26,7 @@ namespace AllainNZWalks.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "reader,writer")] //remove to make public
         public async Task<IActionResult> GetAllWalkAsync()
         {
             // Fetch data from Database - Domain walks
@@ -39,6 +42,7 @@ namespace AllainNZWalks.Controllers
         [HttpGet]
         [Route("{id:guid}")]
         [ActionName("GetWalkAsync")]
+        [Authorize(Roles = "reader,writer")] //remove to make public
         public async Task<IActionResult> GetWalkAsync(Guid id)
         {
             var walk = await walkRepository.GetWalkAsync(id);
@@ -54,6 +58,7 @@ namespace AllainNZWalks.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "writer")] //remove to make public
         public async Task<IActionResult> AddWalkAsync([FromBody] Models.DTO.AddWalkRequest addWalkRequest)
         {
             //Validate
@@ -86,6 +91,7 @@ namespace AllainNZWalks.Controllers
 
         [HttpPut]
         [Route("{id:guid}")]
+        [Authorize(Roles = "writer")] //remove to make public
         public async Task<IActionResult> UpdateWalkAsync([FromRoute] Guid id, [FromBody] Models.DTO.UpdateWalkRequest updateWalkRequest)
         {
             //Validate
@@ -123,6 +129,7 @@ namespace AllainNZWalks.Controllers
 
         [HttpDelete]
         [Route("{id:guid}")]
+        [Authorize(Roles = "writer")] //remove to make public
         public async Task<IActionResult> DeleteWalkAsync(Guid id)
         {
             var walk = await walkRepository.DeleteWalkAsync(id);

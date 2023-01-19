@@ -2,6 +2,8 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using AllainNZWalks.Models.DTO;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace AllainNZWalks.Controllers
 {
@@ -20,6 +22,7 @@ namespace AllainNZWalks.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "reader,writer")] //remove to make public
         public async Task<IActionResult> GetAllWalkDifficultyAsync()
         {
             // Fetch data from Database - Domain walks
@@ -35,6 +38,7 @@ namespace AllainNZWalks.Controllers
         [HttpGet]
         [Route("{id:guid}")]
         [ActionName("GetWalkDifficultyAsync")]
+        [Authorize(Roles = "reader,writer")] //remove to make public
         public async Task<IActionResult> GetWalkDifficultyAsync(Guid id)
         {
             var walkD = await walkDifficultyRepository.GetWalkDifficultyAsync(id);
@@ -50,6 +54,7 @@ namespace AllainNZWalks.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "writer")] //remove to make public
         public async Task<IActionResult> AddWalkDifficultyAsync([FromBody] Models.DTO.AddUpdateWalkDifficultyRequest addUpdateDeleteWalkDifficultyRequest)
         {
             //Validate
@@ -76,6 +81,7 @@ namespace AllainNZWalks.Controllers
 
         [HttpPut]
         [Route("{id:guid}")]
+        [Authorize(Roles = "writer")] //remove to make public
         public async Task<IActionResult> UpdateWalkDifficultyAsync([FromRoute] Guid id, [FromBody] Models.DTO.AddUpdateWalkDifficultyRequest addUpdateDeleteWalkDifficultyRequest)
         {
             //Validate
@@ -103,6 +109,7 @@ namespace AllainNZWalks.Controllers
 
         [HttpDelete]
         [Route("{id:guid}")]
+        [Authorize(Roles = "writer")] //remove to make public
         public async Task<IActionResult> DeleteWalkDifficultyAsync(Guid id)
         {
             var walkD = await walkDifficultyRepository.DeleteWalkDifficultyAsync(id);

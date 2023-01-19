@@ -2,12 +2,14 @@
 using AllainNZWalks.Models.DTO;
 using AllainNZWalks.Repositories;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AllainNZWalks.Controllers
 {
     [ApiController]
     [Route("NZRegionsContoller")] //any name or use ["controller"]
+    //[Authorize] //To block any invalid user
     public class RegionsController : Controller
     {
         private readonly IRegionRepository regionRepository;
@@ -27,6 +29,7 @@ namespace AllainNZWalks.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "reader,writer")] //remove to make public
         public async Task<IActionResult> GetAllRegionsAsync()
         {
             var region = await regionRepository.GetAllRegionAsync();
@@ -56,6 +59,7 @@ namespace AllainNZWalks.Controllers
         [HttpGet]
         [Route("{id:guid}")]
         [ActionName("GetRegionAsync")]
+        [Authorize(Roles = "reader,writer")]
         public async Task<IActionResult> GetRegionAsync(Guid id)
         {
             var region = await regionRepository.GetRegionAsync(id);
@@ -71,6 +75,7 @@ namespace AllainNZWalks.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "writer")]
         public async Task<IActionResult> AddRegionAsync(Models.DTO.AddRegionRequest addRegionRequest)
         {
             //Validate Request
@@ -110,6 +115,7 @@ namespace AllainNZWalks.Controllers
 
         [HttpDelete]
         [Route("{id:guid}")]
+        [Authorize(Roles = "writer")]
         public async Task<IActionResult> DeleteRegionAsync(Guid id)
         {
             //Get Region From Database
@@ -139,6 +145,7 @@ namespace AllainNZWalks.Controllers
 
         [HttpPut]
         [Route("{id:guid}")]
+        [Authorize(Roles = "writer")]
         public async Task<IActionResult> UpdateRegionAsync([FromRoute] Guid id, [FromBody] Models.DTO.UpdateRegionRequest updateRegionRequest)
         {
             //Validate Request
