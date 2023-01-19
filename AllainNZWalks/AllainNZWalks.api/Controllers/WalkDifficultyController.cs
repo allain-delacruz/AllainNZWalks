@@ -53,10 +53,10 @@ namespace AllainNZWalks.Controllers
         public async Task<IActionResult> AddWalkDifficultyAsync([FromBody] Models.DTO.AddUpdateWalkDifficultyRequest addUpdateDeleteWalkDifficultyRequest)
         {
             //Validate
-            if (!ValidateAddWalkDifficultyAsync(addUpdateDeleteWalkDifficultyRequest))
-            {
-                return BadRequest(ModelState);
-            }
+            //if (!ValidateAddWalkDifficultyAsync(addUpdateDeleteWalkDifficultyRequest))
+            //{
+            //    return BadRequest(ModelState);
+            //}
 
             var walkD = new Models.Domain.WalkDifficulty()
             {
@@ -79,10 +79,10 @@ namespace AllainNZWalks.Controllers
         public async Task<IActionResult> UpdateWalkDifficultyAsync([FromRoute] Guid id, [FromBody] Models.DTO.AddUpdateWalkDifficultyRequest addUpdateDeleteWalkDifficultyRequest)
         {
             //Validate
-            if (!ValidateUpdateWalkDifficultyAsync(addUpdateDeleteWalkDifficultyRequest))
-            {
-                return BadRequest(ModelState);
-            }
+            //if (!ValidateUpdateWalkDifficultyAsync(addUpdateDeleteWalkDifficultyRequest))
+            //{
+            //    return BadRequest(ModelState);
+            //}
 
             var walkD = new Models.Domain.WalkDifficulty()
             {

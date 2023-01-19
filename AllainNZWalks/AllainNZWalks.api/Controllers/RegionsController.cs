@@ -74,10 +74,10 @@ namespace AllainNZWalks.Controllers
         public async Task<IActionResult> AddRegionAsync(Models.DTO.AddRegionRequest addRegionRequest)
         {
             //Validate Request
-            if (!ValidateAddRegionAsync(addRegionRequest)) 
-            {
-                return BadRequest(ModelState);
-            }
+            //if (!ValidateAddRegionAsync(addRegionRequest)) 
+            //{
+            //    return BadRequest(ModelState);
+            //}
 
             // Request(DTO) to Domain Model
             var region = new Models.Domain.Region()
@@ -142,10 +142,10 @@ namespace AllainNZWalks.Controllers
         public async Task<IActionResult> UpdateRegionAsync([FromRoute] Guid id, [FromBody] Models.DTO.UpdateRegionRequest updateRegionRequest)
         {
             //Validate Request
-            if (!ValidateUpdateRegionAsync(updateRegionRequest))
-            {
-                return BadRequest(ModelState);
-            }
+            //if (!ValidateUpdateRegionAsync(updateRegionRequest))
+            //{
+            //    return BadRequest(ModelState);
+            //}
 
             // Convert DTO to Domain Model
             var region = new Models.Domain.Region()
@@ -204,7 +204,7 @@ namespace AllainNZWalks.Controllers
                 ModelState.AddModelError(nameof(addRegionRequest.Name), $"{nameof(addRegionRequest.Name)} cannot be null or empty or white space.");
             }
 
-            if (addRegionRequest.Area <= 0)
+            if (addRegionRequest.Area < 0)
             {
                 ModelState.AddModelError(nameof(addRegionRequest.Area), $"{nameof(addRegionRequest.Area)} cannot be less than or equal to zero.");
             }
